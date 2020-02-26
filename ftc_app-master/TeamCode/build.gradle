@@ -1,0 +1,37 @@
+//
+// build.gradle in TeamCode
+//
+// Most of the definitions for building your module reside in a common, shared
+// file 'build.common.gradle'. Being factored in this way makes it easier to
+// integrate updates to the FTC into your code. If you really need to customize
+// the build definitions, you can place those customizations in this file, but
+// please think carefully as to whether such customizations are really necessary
+// before doing so.
+
+
+// Custom definitions may go here
+
+// Include common definitions from above.
+apply from: '../build.common.gradle'
+
+dependencies {
+    compile 'org.openftc:opencv-repackaged:3.4.2-test'
+    compile 'org.openftc:ftc-opmode-tuner-common:0.2'
+    compile 'org.openftc:rev-extensions-2:1.1'
+    //compile 'org.tensorflow:tensorflow-android:+'
+}
+
+android {
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs/src/main/jniLibs/']
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
+}
